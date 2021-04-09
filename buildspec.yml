@@ -13,14 +13,15 @@ phases:
   build:
     commands:
       - echo  =======  Running Lint Tests ========
-      - flake8 ./*py --statistics 
+      - flake8  --statistics 
+      - flake8 --statistics --format junit-xml --output-file test-reports/flake8_report.xml
       - echo  =======  Running Code Tests ========
       - pytest 
         -s
         -v
         --cov 
         --cov-report=html:test-reports/coverage 
-        --junitxml=test-reports/coverage/report.xml
+        --junitxml=test-reports/coverage/pytest_report.xml
         --log-file=test-reports/logs.txt 
   post_build:
     commands:
@@ -32,8 +33,13 @@ artifacts:
   base-directory: 'test-reports'
 
 reports:
+  lint:
+    files:
+      - 'flake8_report.xml'
+    base-directory: 'test-reports'
+    file-format: JUNITXML
   coverage:
     files:
-      - 'report.xml'
+      - 'pytest_report.xml'
     base-directory: 'test-reports/coverage'
     file-format: JUNITXML
