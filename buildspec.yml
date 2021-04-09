@@ -31,16 +31,11 @@ artifacts:
   base-directory: 'test-reports'
 
 reports:
+  coverage2:
+    files:
+      - '**/**'
+    base-directory: 'test-reports/coverage'
   coverage:
     files:
       - "coverage/*"
     base-directory: 'test-reports'
-    discard-paths: yes
-    base-directory: 'test-reports'
-    discard-paths: yes
-  report:
-    files:
-      - "coverage/*"
-      - "coverage/index.html"
-    base-directory: 'test-reports'
-    discard-paths: yes 
