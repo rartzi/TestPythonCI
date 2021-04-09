@@ -40,7 +40,7 @@ reports:
     discard-paths: yes
   report:
     files:
-      - 'report.html'
+      - "coverage/*"
+      - "coverage/index.html"
     base-directory: 'test-reports'
-    discard-paths: yes
-    file-format: JunitXml  
+    discard-paths: yes 
