@@ -25,6 +25,10 @@ phases:
     commands:
       - ls -lR ./test-reports
       - echo Build completed on `date`
+artifacts:
+  files:
+    - test-reports/**
+  discard-paths: yes
 
 reports:
   coverage:
