@@ -1,8 +1,10 @@
 attrs==20.3.0
 coverage==5.5
 flake8==3.9.0
+flake8-formatter-junit-xml==0.0.6
 importlib-metadata==3.10.0
 iniconfig==1.1.1
+junit-xml==1.9
 mccabe==0.6.1
 packaging==20.9
 pi==0.1.2
@@ -13,6 +15,7 @@ pyflakes==2.3.1
 pyparsing==2.4.7
 pytest==6.2.3
 pytest-cov==2.11.1
+six==1.15.0
 toml==0.10.2
 typing-extensions==3.7.4.3
 zipp==3.4.1
