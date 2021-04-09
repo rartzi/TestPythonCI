@@ -32,11 +32,5 @@ reports:
       - "coverage/*"
     base-directory: 'test-reports'
     discard-paths: yes
-  report:
-    files:
-      - 'junit.xml'
-      - 'report.html'
-      - 'assets/*'
     base-directory: 'test-reports'
     discard-paths: yes
-    file-format: JunitXml
