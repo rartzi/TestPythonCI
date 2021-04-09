@@ -34,3 +34,9 @@ reports:
     discard-paths: yes
     base-directory: 'test-reports'
     discard-paths: yes
+  report:
+    files:
+      - 'report.html'
+    base-directory: 'test-reports'
+    discard-paths: yes
+    file-format: JunitXml  
