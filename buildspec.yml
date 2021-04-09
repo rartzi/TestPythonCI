@@ -20,6 +20,7 @@ phases:
         -v
         --cov 
         --cov-report=html:test-reports/coverage 
+        --junitxml=test-reports/coverage/report.xml
         --log-file=test-reports/logs.txt 
   post_build:
     commands:
@@ -31,11 +32,7 @@ artifacts:
   base-directory: 'test-reports'
 
 reports:
-  coverage2:
-    files:
-      - '**/**'
-    base-directory: 'test-reports/coverage'
   coverage:
     files:
-      - "coverage/*"
-    base-directory: 'test-reports'
+      - 'report.xml'
+    base-directory: 'test-reports/coverage'
