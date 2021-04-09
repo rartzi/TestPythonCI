@@ -36,3 +36,4 @@ reports:
     files:
       - 'report.xml'
     base-directory: 'test-reports/coverage'
+    file-format: JUNITXML
