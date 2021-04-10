@@ -28,12 +28,14 @@ pipeline {
       steps {
           echo 'Testing...'
           sh "python3 -m pytest -s -v --cov --cov-report=html:test-reports/coverage --junitxml=test-reports/coverage/pytest_report.xml --log-file=test-reports/logs.txt "
+          junit 'test-reports/coverage/pytest_report.xml'
       }
     }
     stage('Test-Linting') {
       steps {
           echo 'Linting...'
           sh 'python3 -m flake8 --format junit-xml --output-file test-reports/flake8_report.xml '
+          junit 'test-reports/flake8_report.xml'
       }
     }
     stage('Deploy') {
