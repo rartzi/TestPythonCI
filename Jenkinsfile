@@ -8,7 +8,7 @@ pipeline {
           sh 'python3 -m pip install --upgrade pip'
           sh 'python3 -m pip install -r requirements.txt'
           sh 'rm -rf dspt'
-          sh 'mkdir test-reports'
+          sh 'mkdir -p test-reports'
         }
     }
     stage('Build') {
