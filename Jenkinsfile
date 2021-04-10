@@ -34,7 +34,7 @@ pipeline {
     stage('Test-Linting') {
       steps {
           echo 'Linting...'
-          sh 'python3 -m flake8 --format junit-xml --output-file test-reports/flake8_report.xml '
+          sh 'python3 -m flake8 --format junit-xml --output-file test-reports/flake8_report.xml || echo "Linting Issues - plesae check '
           junit 'test-reports/flake8_report.xml'
       }
     }
