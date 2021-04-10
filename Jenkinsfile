@@ -20,7 +20,7 @@ pipeline {
    stage('Test') {
      steps {
         echo 'Testing...'
-        sh 'flake8 --format junit-xml --output-file test-reports/flake8_report.xml || echo "Check Linting Errors"
+        sh 'flake8 --format junit-xml --output-file test-reports/flake8_report.xml || echo "Check Linting Errors"'
         sh "pytest -s -v --cov --cov-report=html:test-reports/coverage --junitxml=test-reports/coverage/pytest_report.xml --log-file=test-reports/logs.txt "
      }
    }
