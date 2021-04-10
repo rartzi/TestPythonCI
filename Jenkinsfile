@@ -14,6 +14,10 @@ pipeline {
     stage('Build') {
           steps {
             echo 'Building...'
+            sh 'python3 -m pip install twine'
+            sh 'python3 setup.py sdist bdist_wheel'
+            sh 'aws codeartifact login --tool twine --domain astrazeneca-preprod --repository my-repository --region eu-west-1'
+            sh 'python3 -m twine upload dist/* --repository codeartifact'
           }
     }
     stage('Test-Linting') {
