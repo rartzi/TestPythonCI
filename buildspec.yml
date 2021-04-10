@@ -13,8 +13,7 @@ phases:
   build:
     commands:
       - echo  =======  Running Lint Tests ========
-      - flake8  --statistics 
-      - flake8 --statistics --format junit-xml --output-file test-reports/flake8_report.xml || echo Check Linting Errors
+      - flake8 --format junit-xml --output-file test-reports/flake8_report.xml || echo 'Check Linting Errors'
       - echo $?
       - echo  =======  Running Code Tests ========
       - pytest 
