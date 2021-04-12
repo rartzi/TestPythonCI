@@ -1,0 +1,45 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  pre_build:
+    commands:
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+      - rm -rf dspt
+      - mkdir test-reports
+  build:
+    commands:
+      - echo  =======  Running Lint Tests ========
+      - flake8 --format junit-xml --output-file test-reports/flake8_report.xml || echo 'Check Linting Errors'
+      - echo $?
+      - echo  =======  Running Code Tests ========
+      - pytest 
+        -s
+        -v
+        --cov 
+        --cov-report=html:test-reports/coverage 
+        --junitxml=test-reports/coverage/pytest_report.xml
+        --log-file=test-reports/logs.txt 
+  post_build:
+    commands:
+      - ls -lR ./test-reports
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/**'
+  base-directory: 'test-reports'
+
+reports:
+  lint:
+    files:
+      - 'flake8_report.xml'
+    base-directory: 'test-reports'
+    file-format: JUNITXML
+  coverage:
+    files:
+      - 'pytest_report.xml'
+    base-directory: 'test-reports/coverage'
+    file-format: JUNITXML
