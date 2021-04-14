@@ -33,12 +33,13 @@ jobs:
         # Create report Directory
         mkdir -p test-reports/flake8
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --format junit-xml --output-file=test-reports/flake8/flake8.txt
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --format junit-xml --output-file test-reports/flake8_report1.xml
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --format junit-xml  --output-file=test-reports/flake8/flake8.xml
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --format junit-xml --output-file test-reports/flake8_report.xml
     - name: Test with pytest
       run: |
-        pytest
+        # pytest
+        pytest -s -v --cov --cov-report=html:test-reports/coverage --junitxml=test-reports/coverage/pytest_report.xml --log-file=test-reports/logs.txt
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
