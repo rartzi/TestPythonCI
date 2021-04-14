@@ -15,7 +15,7 @@ pipeline {
           steps {
             echo 'Building...'
             sh 'python3 -m pip install twine'
-            sh 'sed "s/1.0.2/${env.BUILD_ID}/" setup.py > setup-fixed.py'
+            sh 'sed "s/1.0.2/"'${BUILD_ID}'"/" setup.py > setup-fixed.py'
             sh 'cat setup-fixed.py'
             sh 'python3 setup-fixed.py sdist bdist_wheel'
             withCredentials([usernamePassword(credentialsId: 'RonenKjzc', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
