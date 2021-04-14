@@ -29,12 +29,13 @@ jobs:
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --format junit-xml --output-file=flake8_report1.txt
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --format junit-xml --output-file=flake8_report1.xml
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --format junit-xml  --output-file=flake8_report2.xml
+          # flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --format junit-xml  --output-file=flake8_report2.xml
+          flake8 . --exit-zero --format junit-xml --output-file flake8_report.xml
         
       - name: PyTest
-        run: python -m pytest --junit-xml pytest.xml
+        run: python -m pytest -s -v --cov --cov-report=html:./coverage --junitxml pytest.xml
 
       - name: Upload Unit Test Results
         if: always()
