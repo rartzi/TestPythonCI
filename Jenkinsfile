@@ -21,7 +21,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'RonenKjzc', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
             // some block
               sh 'aws codeartifact login --tool twine --domain astrazeneca-preprod --repository my-repository --region eu-west-1'
-              sh 'python3 -m twine --verbose upload dist/* --repository codeartifact'
+              sh 'python3 -m twine upload dist/* --repository codeartifact'
             } 
             
           }
