@@ -31,7 +31,7 @@ jobs:
     - name: Lint with flake8
       run: |
         # Create report Directory
-        mkdir -p test-reports/flake8
+        mkdir -p test-reports
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --format junit-xml --output-file test-reports/flake8_report1.xml
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
@@ -39,9 +39,9 @@ jobs:
     - name: Test with pytest
       run: |
         # pytest
-        pytest -s -v --cov --cov-report=html:test-reports/coverage --junitxml=test-reports/coverage/pytest_report.xml --log-file=test-reports/logs.txt
+        pytest -s -v --cov --cov-report=html:test-reports/coverage --junitxml=test-reports/pytest_report.xml --log-file=test-reports/logs.txt
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
       with:
-        files: test-reports/**/*.xml
+        files: test-reports/*.xml
