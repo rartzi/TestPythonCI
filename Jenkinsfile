@@ -15,13 +15,13 @@ pipeline {
           steps {
             echo 'Building...'
             sh 'python3 -m pip install twine'
-            sh 'sed "s/1.0.2/${BUILD_ID}/" setup.py > setup-fixed.py'
-            sh 'cat setup-fixed.py'
-            sh 'python3 setup-fixed.py sdist bdist_wheel'
+            sh 'sed "s/1.0.2/${BUILD_ID}/" setup.py > setup.py'
+            sh 'cat setup.py'
+            sh 'python3 setup.py sdist bdist_wheel'
             withCredentials([usernamePassword(credentialsId: 'RonenKjzc', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
             // some block
               sh 'aws codeartifact login --tool twine --domain astrazeneca-preprod --repository my-repository --region eu-west-1'
-              sh 'python3 -m twine upload dist/* --repository codeartifact'
+              sh 'python3 -m twine --verbose upload dist/* --repository codeartifact'
             } 
             
           }
